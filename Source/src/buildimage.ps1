@@ -1,0 +1,2 @@
+Write-Output "Making Driver Image...";
+$str = ""; $cnt = 0; get-content -encoding byte ".\..\..\Bin\kernelhook.sys" | foreach-object { $str += ("0x{0:x2}, " -f $_); if ($cnt++ -eq 16) { $cnt = 0; $str += "`r`n"; } }; $str = $str -replace ".{2}$"; $template = "#define array_len " + (Get-Item '.\..\..\Bin\kernelhook.sys').length; $template += "`r`n`r`nunsigned char driver_image[] = {`r`n"; $template += $str; $template += "`r`n};"; Write-Output $template | Out-File -FilePath "driverimage.h"

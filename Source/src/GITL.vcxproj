@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{46C8FB0F-C8BF-4932-B84C-A10B38904728}</ProjectGuid>
+    <RootNamespace>GITL</RootNamespace>
+    <ProjectName>src</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>.\output\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\output\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>GITL</TargetName>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>.\output\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\output\$(Platform)\$(Configuration)\</IntDir>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Team Tools\Static Analysis Tools\Rule Sets\SecurityRules.ruleset</CodeAnalysisRuleSet>
+    <TargetName>GITL</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <Optimization>MinSpace</Optimization>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>None</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SetChecksum>true</SetChecksum>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+      <AdditionalOptions>/NOCOFFGRPINFO %(AdditionalOptions)</AdditionalOptions>
+      <MinimumRequiredVersion>6.0</MinimumRequiredVersion>
+    </Link>
+    <PostBuildEvent>
+      <Command>powershell.exe -c "cp output\x64\Release\GITL.exe ..\..\Bin\GITL.exe; mv ..\..\Bin\GITL.exe ..\..\Bin\gitl.exe"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>run cmd</Message>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>powershell.exe -ep bypass ".\buildimage.ps1"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="compess.cpp" />
+    <ClCompile Include="drvmap.cpp" />
+    <ClCompile Include="hde\hde64.c" />
+    <ClCompile Include="hookprovider.cpp" />
+    <ClCompile Include="idrv\atszio.cpp" />
+    <ClCompile Include="idrv\gdrv.cpp" />
+    <ClCompile Include="idrv\msio.cpp" />
+    <ClCompile Include="idrv\nal.cpp" />
+    <ClCompile Include="idrv\rtcore.cpp" />
+    <ClCompile Include="KDUmain.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="minirtl\cmdline.c" />
+    <ClCompile Include="minirtl\strtou64.c" />
+    <ClCompile Include="minirtl\strtoul.c" />
+    <ClCompile Include="minirtl\u64tohex.c" />
+    <ClCompile Include="minirtl\_filename.c" />
+    <ClCompile Include="minirtl\_strcat.c" />
+    <ClCompile Include="minirtl\_strcmp.c" />
+    <ClCompile Include="minirtl\_strcmpi.c" />
+    <ClCompile Include="minirtl\_strcpy.c" />
+    <ClCompile Include="minirtl\_strend.c" />
+    <ClCompile Include="minirtl\_strlen.c" />
+    <ClCompile Include="minirtl\_strncpy.c" />
+    <ClCompile Include="KDUprov.cpp" />
+    <ClCompile Include="pagewalk.cpp" />
+    <ClCompile Include="ps.cpp" />
+    <ClCompile Include="sup.cpp" />
+    <ClCompile Include="tests.cpp" />
+    <ClCompile Include="victim.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="compress.h" />
+    <ClInclude Include="consts.h" />
+    <ClInclude Include="driverimage.h" />
+    <ClInclude Include="drvmap.h" />
+    <ClInclude Include="gitl.h" />
+    <ClInclude Include="global.h" />
+    <ClInclude Include="hde\hde64.h" />
+    <ClInclude Include="hookprovider.h" />
+    <ClInclude Include="idrv\atszio.h" />
+    <ClInclude Include="idrv\gdrv.h" />
+    <ClInclude Include="idrv\msio.h" />
+    <ClInclude Include="idrv\nal.h" />
+    <ClInclude Include="idrv\rtcore.h" />
+    <ClInclude Include="irp.h" />
+    <ClInclude Include="kduprov.h" />
+    <ClInclude Include="minirtl\cmdline.h" />
+    <ClInclude Include="minirtl\minirtl.h" />
+    <ClInclude Include="minirtl\rtltypes.h" />
+    <ClInclude Include="minirtl\_filename.h" />
+    <ClInclude Include="ntos\halamd64.h" />
+    <ClInclude Include="ntos\ntos.h" />
+    <ClInclude Include="pagewalk.h" />
+    <ClInclude Include="ps.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="sup.h" />
+    <ClInclude Include="tests.h" />
+    <ClInclude Include="victim.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="buildimage.ps1" />
+    <None Include="drv\ATSZIO64.bin" />
+    <None Include="drv\gdrv.bin" />
+    <None Include="drv\iQVM64.bin" />
+    <None Include="drv\msio64.bin" />
+    <None Include="drv\procexp.bin" />
+    <None Include="drv\RTCore64.bin" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
