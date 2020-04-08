@@ -1,6 +1,6 @@
 # Ghost In The Logs
 
-This tool allows you to evade sysmon and windows event logging
+This tool allows you to evade sysmon and windows event logging, my blog post about it can be found [here](https://blog.dylan.codes/evading-sysmon-and-windows-event-logging/)
 
 ## Usage
 
